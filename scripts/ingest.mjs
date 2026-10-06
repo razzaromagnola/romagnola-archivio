@@ -96,7 +96,8 @@ async function ingestLine(abs, folder, code, kind, warnings) {
   const recs = [];
   for (const f of files) {
     const parts = path.relative(abs, f).split(path.sep); const stem = path.basename(f).replace(/\.[^.]+$/, '');
-    const m = stem.match(/^([A-Z]{1,2}\d{0,2})\s+(.*)$/); const order = m ? m[1] : 'ZZ'; const rest = m ? m[2] : stem;
+    const m = stem.match(/^([A-Z]{1,2}\d{0,2})\s+(.*)$/); const order = m ? m[1] : 'ZZ'; let rest = m ? m[2] : stem;
+    rest = rest.replace(/(\d)\s*(da|by)\b/gi, '$1 $2 ');  // "BO7742da Arno" -> "BO7742 da Arno"
     const sp = rest.split(/\s+(?:da|by|BY|Da)\s+/); const head = sp[0]; const after = sp[1] || '';
     const reg = head.match(REG); const matricola = reg ? reg[1].replace(/\s/g, '') : '';
     let name = (reg ? head.slice(0, reg.index) : head);

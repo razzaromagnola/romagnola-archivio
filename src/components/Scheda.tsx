@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { useLang } from './LangProvider';
 import type { Line } from '@/lib/types';
-const firstWord = (n: string) => (n || '').replace(/^(VU|V\.U\.|CHR|LV|LF|I\.|L\.|W\.|R\.|F\.|A\.|Y\.)\s+/i, '').split(' ')[0];
 
 export default function Scheda({ line, id }: { line: Line; id: string }) {
   const { lang } = useLang(); const L = (it: string, en: string) => (lang === 'en' ? en : it);
@@ -17,9 +16,6 @@ export default function Scheda({ line, id }: { line: Line; id: string }) {
   const anc: string[] = []; { let c = by[id]; while (c && c.parent && by[c.parent]) { c = by[c.parent]; anc.unshift(c.id); } }
   const sib = kids[b.parent ?? '__root__'] || []; const pos = sib.indexOf(id);
   const prev = pos > 0 ? sib[pos - 1] : null; const next = pos >= 0 && pos < sib.length - 1 ? sib[pos + 1] : null;
-  const narr = lang === 'en' ? line.narr.en : line.narr.it; const key = firstWord(b.name).toLowerCase();
-  let ex: string | null = null;
-  if (key.length >= 3) outer: for (const s of narr) for (const p of [s.h, ...s.ps]) if (p && p.toLowerCase().includes(key)) { ex = p; break outer; }
   return (
     <>
       <div className="crumb"><Link href="/">{L('Archivio', 'Archive')}</Link><i>/</i><Link href={`/linea/${code}/`}>{line.name}</Link><i>/</i><span>{b.name}</span></div>
@@ -47,7 +43,6 @@ export default function Scheda({ line, id }: { line: Line; id: string }) {
             </dl>
             {line.kind !== 'category' && <div className="schactions"><Link className="btnlink" href={`/linea/${code}/?focus=${b.id}`}>↳ {L('Mostra nell’albero', 'Show in tree')}</Link></div>}
             {children.length > 0 && <div className="rel"><div className="lab">{L('Figli in archivio', 'Sons on file')} ({children.length})</div>{children.map((c) => <Link key={c.id} href={`/toro/${c.id}/`}>{c.name} {c.country !== 'Italia' && <span className="fl">{c.flag}</span>}</Link>)}</div>}
-            {ex && <div className="exc"><div className="lab">{L('Dal testo della linea', 'From the line’s text')}</div><p>{ex}</p></div>}
           </div>
         </div>
       </div>
