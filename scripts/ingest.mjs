@@ -66,12 +66,24 @@ function walk(dir, acc = []) { for (const e of fs.readdirSync(dir, { withFileTyp
 const isImg = (f) => /\.(jpe?g|png|bmp|tiff?)$/i.test(f);
 const cleanCap = (f) => f.replace(/\.(jpe?g|png|bmp|tiff?|webp)$/i, '').replace(/^[A-Z]\d?\s+/, '').trim();
 
+
+let _Jimp;
+async function loadJimp() {
+  if (_Jimp !== undefined) return _Jimp;
+  try { const m = await import('jimp'); _Jimp = m.Jimp || m.default || m; } catch { _Jimp = null; }
+  return _Jimp;
+}
+
 async function optimize(src, rel, { width = 900, quality = 62, gray = false } = {}, warnings) {
   const dest = path.join(IMG, rel); fs.mkdirSync(path.dirname(dest), { recursive: true });
-  try { if (fs.statSync(src).size === 0) { warnings.push(`vuota/corrotta: ${src}`); return null; }
-    let im = sharp(src, { failOn: 'none' }).rotate().resize({ width, withoutEnlargement: true }); if (gray) im = im.grayscale();
-    await im.webp({ quality }).toFile(dest); return '/img/' + rel.replace(/\\/g, '/');
-  } catch (e) { warnings.push(`errore immagine ${src}: ${String(e).slice(0, 50)}`); return null; }
+  try { if (fs.statSync(src).size === 0) { warnings.push(`vuota/corrotta: ${src}`); return null; } } catch { warnings.push(`illeggibile: ${src}`); return null; }
+  const run = async (input) => { let im = sharp(input, { failOn: 'none' }).rotate().resize({ width, withoutEnlargement: true }); if (gray) im = im.grayscale(); await im.webp({ quality }).toFile(dest); };
+  try { await run(src); return '/img/' + rel.replace(/\\/g, '/'); }
+  catch (e1) {
+    // formati che sharp non legge (es. BMP): ripiego su jimp
+    try { const Jimp = await loadJimp(); if (!Jimp) throw new Error('jimp n/d'); const img = await Jimp.read(src); const buf = (typeof img.getBufferAsync === 'function') ? await img.getBufferAsync('image/png') : await img.getBuffer('image/png'); await run(buf); return '/img/' + rel.replace(/\\/g, '/'); }
+    catch (e2) { warnings.push(`immagine non convertibile: ${src}`); return null; }
+  }
 }
 
 // ---- documenti ----
