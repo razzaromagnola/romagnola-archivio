@@ -224,6 +224,16 @@ function applyOverrides(L, warnings) {
       if (ob && !ob.img && !L.bulls.some(x => x.parent === old)) L.bulls = L.bulls.filter(x => x.id !== old);
     }
   }
+  if (ov.rootAbove) {
+    const r = resolveBull(ov.rootAbove, L.bulls, warnings, L.code);
+    if (r && r.id !== L.root) {
+      const old = L.root;
+      r.parent = null;
+      const ob = L.bulls.find(x => x.id === old);
+      if (ob) ob.parent = r.id;
+      L.root = r.id; L.founder = r.name;
+    }
+  }
   for (const { bull, parent } of (ov.setParent || [])) {
     const b = resolveBull(bull, L.bulls, warnings, L.code); if (!b) continue;
     b.parent = (parent === '@root') ? L.root : ensureParent(parent);

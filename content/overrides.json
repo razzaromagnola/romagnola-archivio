@@ -1,9 +1,15 @@
 {
-  "_nota": "Correzioni manuali applicate sopra l'albero automatico. Matteo Ridolfi, ott 2026. Operazioni: label, root, setParent [{bull,parent}] (parent '@root' = capostipite), remove [nomi], removeIfLeaf [nomi] (toglie il doppione senza figli).",
+  "_nota": "Correzioni manuali sopra l'albero automatico. Matteo Ridolfi, ott 2026. Operazioni: label, root, rootAbove (rende un toro radice e mette la vecchia radice come suo figlio, mantenendo i discendenti), setParent [{bull,parent}] (parent '@root' = capostipite), remove [nomi], removeIfLeaf [nomi].",
   "lines": {
     "C": {
       "label": "Medoro 1/RA",
-      "root": "MEDORO 1 RA adulto"
+      "root": "MEDORO 1 RA adulto",
+      "setParent": [
+        {
+          "bull": "Cesare",
+          "parent": "Felicino"
+        }
+      ]
     },
     "E": {
       "setParent": [
@@ -73,12 +79,7 @@
       ]
     },
     "G": {
-      "setParent": [
-        {
-          "bull": "Bolero",
-          "parent": "Verdun"
-        }
-      ]
+      "rootAbove": "Verdun"
     },
     "G1": {
       "root": "Canaro",
@@ -127,16 +128,46 @@
         {
           "bull": "Coertzen Ivanhoe",
           "parent": "VU Ivanhoe"
+        },
+        {
+          "bull": "ZIGOLO d.Prato Prop. Scozzoli R. FO",
+          "parent": "VU Ivanhoe"
+        },
+        {
+          "bull": "Termine",
+          "parent": "VU Ivanhoe"
+        },
+        {
+          "bull": "Settebello",
+          "parent": "VU Ivanhoe"
+        },
+        {
+          "bull": "Vesuvio",
+          "parent": "VU Ivanhoe"
+        },
+        {
+          "bull": "VU Userkaf",
+          "parent": "VU Orione"
+        },
+        {
+          "bull": "Rosan Karif",
+          "parent": "VU Eolo"
+        },
+        {
+          "bull": "Dario",
+          "parent": "VU Eolo"
+        },
+        {
+          "bull": "Doro",
+          "parent": "VU Eolo"
         }
+      ],
+      "remove": [
+        "ZIGOLO d.Prato All. Tassinari P. FO Prop. Scozzoli R. FO"
       ]
     },
     "G4": {
-      "setParent": [
-        {
-          "bull": "Taccone",
-          "parent": "Eletto"
-        }
-      ]
+      "rootAbove": "Eletto"
     },
     "H1": {
       "setParent": [
@@ -174,10 +205,6 @@
     "K": {
       "setParent": [
         {
-          "bull": "Colosso",
-          "parent": "Mauro"
-        },
-        {
           "bull": "SCR Modoc",
           "parent": "Lakeside Fidelio"
         },
@@ -185,6 +212,10 @@
           "bull": "Lakeside Fidelio",
           "parent": "Avoncroft Marcus"
         }
+      ],
+      "rootAbove": "Mauro",
+      "remove": [
+        "SCR Modoc ARA #2716"
       ]
     },
     "K2": {
@@ -264,6 +295,38 @@
         {
           "bull": "Carramar Napoleon",
           "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Ville Unite Rasmus",
+          "parent": "Ville Unite Navaho"
+        },
+        {
+          "bull": "Fardini PiIota",
+          "parent": "Ville Unite Navaho"
+        },
+        {
+          "bull": "Quarzo d. Radice",
+          "parent": "Ville Unite Navaho"
+        },
+        {
+          "bull": "VU Faraone",
+          "parent": "Ville Unite Rasmus"
+        },
+        {
+          "bull": "Fardini Lion",
+          "parent": "Ville Unite Rasmus"
+        },
+        {
+          "bull": "Franz di S.A.",
+          "parent": "Ville Unite Rasmus"
+        },
+        {
+          "bull": "Gaglioppo",
+          "parent": "Ville Unite Rasmus"
+        },
+        {
+          "bull": "Inno",
+          "parent": "Ville Unite Rasmus"
         }
       ]
     },
@@ -323,6 +386,394 @@
     "R": {
       "remove": [
         "Ongeama Galileo"
+      ]
+    },
+    "K1": {
+      "setParent": [
+        {
+          "bull": "Coertzen Marcus",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Quinbrook Yarra",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Rosan Gavin",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Rosan Greg",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Rosan Joshua",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Rosan Lewis",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Rosan Napoleon",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Shannonbourne Emperor",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Shannonbourne Hercules",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Shannonbourne Horatio",
+          "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Shannonbourne Impeccable",
+          "parent": "Shannon Bourne Brockwell"
+        }
+      ]
+    },
+    "H2": {
+      "setParent": [
+        {
+          "bull": "Gargantua",
+          "parent": "@root"
+        },
+        {
+          "bull": "MORENO",
+          "parent": "@root"
+        },
+        {
+          "bull": "DRITTO 2°",
+          "parent": "@root"
+        },
+        {
+          "bull": "LEDRO",
+          "parent": "@root"
+        },
+        {
+          "bull": "Clitunno",
+          "parent": "@root"
+        },
+        {
+          "bull": "SOLE",
+          "parent": "@root"
+        },
+        {
+          "bull": "Moro",
+          "parent": "@root"
+        },
+        {
+          "bull": "CIRANO",
+          "parent": "@root"
+        },
+        {
+          "bull": "TOTO'",
+          "parent": "@root"
+        },
+        {
+          "bull": "BARBABLU'",
+          "parent": "@root"
+        },
+        {
+          "bull": "TESEO",
+          "parent": "@root"
+        },
+        {
+          "bull": "ARALDO",
+          "parent": "@root"
+        },
+        {
+          "bull": "Giotto",
+          "parent": "@root"
+        },
+        {
+          "bull": "SCOTTISH CAESAR",
+          "parent": "@root"
+        },
+        {
+          "bull": "SCOTTISH DRITTO",
+          "parent": "@root"
+        },
+        {
+          "bull": "PIAVE",
+          "parent": "@root"
+        },
+        {
+          "bull": "CARRIE DOWNS WARWICK",
+          "parent": "@root"
+        },
+        {
+          "bull": "GIOVE",
+          "parent": "Gargantua"
+        },
+        {
+          "bull": "ERCOLE",
+          "parent": "Gargantua"
+        },
+        {
+          "bull": "Saarinen",
+          "parent": "MORENO"
+        },
+        {
+          "bull": "ANTO",
+          "parent": "DRITTO 2°"
+        },
+        {
+          "bull": "NERONE",
+          "parent": "DRITTO 2°"
+        },
+        {
+          "bull": "EDDY",
+          "parent": "NERONE"
+        },
+        {
+          "bull": "TANGO",
+          "parent": "Vulcano"
+        },
+        {
+          "bull": "R.D. Untouchable",
+          "parent": "TANGO"
+        },
+        {
+          "bull": "PIPPO",
+          "parent": "TOTO'"
+        },
+        {
+          "bull": "Esteso",
+          "parent": "BARBABLU'"
+        },
+        {
+          "bull": "REMO",
+          "parent": "Binario"
+        },
+        {
+          "bull": "MMB BINARIO",
+          "parent": "Binario"
+        },
+        {
+          "bull": "MONCUR BRUCE",
+          "parent": "MMB BINARIO"
+        },
+        {
+          "bull": "DUNURE DIVIDENT",
+          "parent": "SCOTTISH CAESAR"
+        },
+        {
+          "bull": "STIRLING JULIAN",
+          "parent": "DUNURE DIVIDENT"
+        },
+        {
+          "bull": "STIRLING JIMONDI",
+          "parent": "DUNURE DIVIDENT"
+        },
+        {
+          "bull": "STIRLING CONDOR",
+          "parent": "DUNURE DIVIDENT"
+        },
+        {
+          "bull": "STIRLING HAMPO",
+          "parent": "DUNURE DIVIDENT"
+        },
+        {
+          "bull": "DUNURE NOTHERN DANCER",
+          "parent": "DUNURE DIVIDENT"
+        },
+        {
+          "bull": "DUNURE ROBERTO",
+          "parent": "DUNURE DIVIDENT"
+        },
+        {
+          "bull": "H.MAGNIFICENT",
+          "parent": "STIRLING JULIAN"
+        },
+        {
+          "bull": "PIRNHALL PLUTO",
+          "parent": "STIRLING JULIAN"
+        },
+        {
+          "bull": "MR MILENO 116D",
+          "parent": "PIRNHALL PLUTO"
+        },
+        {
+          "bull": "HAZELWOOD NOBILITY",
+          "parent": "STIRLING JIMONDI"
+        },
+        {
+          "bull": "DUNURE ROB ROY",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "ALDAREE NELSON",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "DEKER ARA #",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "Doonbiddie Rolex",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "CLOVERDALE ROMEO",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "ROBUR ROCKY",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "CARRIE DOWNS SEBASTIANO  Peter Turner Q. AusI.",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "WYOMING EMMETT",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "Wyoming KaiI R. PuIIen Q AusI",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "Talsen Stud Terry Talbot Cambridge  NZ linea Scottish Dritto",
+          "parent": "SCOTTISH DRITTO"
+        },
+        {
+          "bull": "IVAN",
+          "parent": "Italo"
+        },
+        {
+          "bull": "IGOR",
+          "parent": "Italo"
+        },
+        {
+          "bull": "TARCISIO",
+          "parent": "IVAN"
+        },
+        {
+          "bull": "GOLIA",
+          "parent": "IVAN"
+        },
+        {
+          "bull": "PARIDE",
+          "parent": "IVAN"
+        },
+        {
+          "bull": "Quadro",
+          "parent": "IVAN"
+        },
+        {
+          "bull": "FURBO",
+          "parent": "IVAN"
+        },
+        {
+          "bull": "MINCIO",
+          "parent": "Medrano"
+        },
+        {
+          "bull": "METRO",
+          "parent": "MINCIO"
+        },
+        {
+          "bull": "ERGUM",
+          "parent": "METRO"
+        },
+        {
+          "bull": "LINO",
+          "parent": "METRO"
+        },
+        {
+          "bull": "NEMBOKID",
+          "parent": "METRO"
+        },
+        {
+          "bull": "Quinbrook Manso",
+          "parent": "ERGUM"
+        },
+        {
+          "bull": "ROBUR GENERAL BRICK",
+          "parent": "ERGUM"
+        },
+        {
+          "bull": "WYOMING XENO linea Ergum Qld Ausl",
+          "parent": "ERGUM"
+        },
+        {
+          "bull": "OLMO d. Radice",
+          "parent": "ERGUM"
+        },
+        {
+          "bull": "GIRARDELLI",
+          "parent": "Gimondi"
+        },
+        {
+          "bull": "FRULLO",
+          "parent": "Ronco"
+        },
+        {
+          "bull": "ARGO",
+          "parent": "TARCISIO"
+        },
+        {
+          "bull": "ZIGANO",
+          "parent": "TARCISIO"
+        },
+        {
+          "bull": "ICU DAWNET",
+          "parent": "ZIGANO"
+        },
+        {
+          "bull": "ZIGANO son Graciela Rebeil MX",
+          "parent": "ZIGANO"
+        },
+        {
+          "bull": "ICU DANTE",
+          "parent": "Zeus"
+        },
+        {
+          "bull": "DANTE'S PRODIGY by#36  ICU Dante Lee Bree USA",
+          "parent": "ICU DANTE"
+        },
+        {
+          "bull": "SIR JOE ARA #",
+          "parent": "Josè"
+        },
+        {
+          "bull": "Binario",
+          "parent": "@root"
+        },
+        {
+          "bull": "Italo",
+          "parent": "@root"
+        },
+        {
+          "bull": "Josè",
+          "parent": "@root"
+        },
+        {
+          "bull": "Vulcano",
+          "parent": "SOLE"
+        },
+        {
+          "bull": "Medrano",
+          "parent": "IVAN"
+        },
+        {
+          "bull": "Gimondi",
+          "parent": "METRO"
+        },
+        {
+          "bull": "Ronco",
+          "parent": "METRO"
+        },
+        {
+          "bull": "Zeus",
+          "parent": "TARCISIO"
+        }
       ]
     }
   }
