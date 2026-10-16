@@ -183,6 +183,68 @@ async function ingestChapter(abs, folder, code, warnings) {
   return { id, code, title: folder.replace(/^[A-Z]\d?\s+/, ''), kind: 'documento', desc, it_html, en_html, images };
 }
 
+
+// ============ OVERRIDES (correzioni manuali del cliente) ============
+// Legge content/overrides.json e applica correzioni sopra l'albero automatico:
+//   label, root, setParent [{bull,parent}], remove [names].
+// I tori/padri si risolvono per nome (tollerante: accenti, matricola, 1 refuso OCR).
+let OVERRIDES = {};
+try { OVERRIDES = JSON.parse(fs.readFileSync(path.join(CONTENT, 'overrides.json'), 'utf8')).lines || {}; } catch {}
+function lev(a, b) { const m=a.length,n=b.length; const d=Array.from({length:m+1},(_,i)=>[i,...Array(n).fill(0)]); for(let j=0;j<=n;j++)d[0][j]=j; for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1)); return d[m][n]; }
+function resolveBull(name, bulls, warnings, ctx) {
+  const t = norm(name); const tf = t.split(' ')[0];
+  let hit = bulls.find(b => norm(b.name) === t);
+  if (!hit) hit = bulls.find(b => { const bn = norm(b.name); return bn.startsWith(t) || t.startsWith(bn); });
+  if (!hit) { const cand = bulls.filter(b => { const f = norm(b.name).split(' ')[0]; return f.length>3 && tf.length>3 && lev(f, tf) <= 1; }); if (cand.length === 1) hit = cand[0]; }
+  if (!hit && warnings) warnings.push(`override [${ctx}]: toro "${name}" non trovato`);
+  return hit || null;
+}
+function applyOverrides(L, warnings) {
+  const ov = OVERRIDES[L.code]; if (!ov) return L;
+  const slugId = (n) => `${L.code.toLowerCase()}-${slug(n) || 'x'}`;
+  const ensureParent = (name) => {
+    let p = resolveBull(name, L.bulls, null, L.code);
+    if (p) return p.id;
+    // padre citato ma senza bozzetto: creo nodo virtuale agganciato alla radice
+    const id = slugId(name);
+    if (!L.bulls.find(b => b.id === id)) {
+      L.bulls.push({ id, name: name.replace(/\b([A-Z])([A-Z]+)\b/g, (m,a,b)=>a+b.toLowerCase()), matricola:'', sire:'', prov:'', born:'', branch:'', estero:false, country:'Italia', flag:'🇮🇹', img:null, parent: L.root, order:'A' });
+      warnings && warnings.push(`override [${L.code}]: creato nodo padre "${name}" (senza bozzetto)`);
+    }
+    return id;
+  };
+  if (ov.label) L.name = ov.label;
+  if (ov.root) {
+    const r = resolveBull(ov.root, L.bulls, warnings, L.code);
+    if (r) {
+      const old = L.root;
+      L.bulls.forEach(x => { if (x.parent === old && x.id !== r.id) x.parent = r.id; });
+      r.parent = null; L.root = r.id; L.founder = r.name;
+      const ob = L.bulls.find(x => x.id === old);
+      if (ob && !ob.img && !L.bulls.some(x => x.parent === old)) L.bulls = L.bulls.filter(x => x.id !== old);
+    }
+  }
+  for (const { bull, parent } of (ov.setParent || [])) {
+    const b = resolveBull(bull, L.bulls, warnings, L.code); if (!b) continue;
+    b.parent = (parent === '@root') ? L.root : ensureParent(parent);
+  }
+  for (const name of (ov.remove || [])) {
+    const b = resolveBull(name, L.bulls, warnings, L.code); if (!b) continue;
+    L.bulls.forEach(x => { if (x.parent === b.id) x.parent = b.parent; });
+    L.bulls = L.bulls.filter(x => x.id !== b.id);
+  }
+  for (const name of (ov.removeIfLeaf || [])) {
+    const hasChild = (id) => L.bulls.some(x => x.parent === id);
+    const leaves = L.bulls.filter(b => norm(b.name).split(' ')[0] === norm(name).split(' ')[0] && !hasChild(b.id));
+    if (leaves.length) { const victim = leaves[0]; L.bulls = L.bulls.filter(x => x.id !== victim.id); }
+    else warnings && warnings.push(`override [${L.code}]: removeIfLeaf "${name}" nessun nodo-foglia trovato`);
+  }
+  // rompi eventuali cicli introdotti
+  const byId = Object.fromEntries(L.bulls.map(b => [b.id, b]));
+  for (const b of L.bulls) { let seen = new Set([b.id]), p = b.parent; while (p) { if (seen.has(p)) { b.parent = L.root !== b.id ? L.root : null; break; } seen.add(p); p = byId[p] ? byId[p].parent : null; } }
+  return L;
+}
+
 async function run() {
   console.log('Avvio ingest. Archivio:', ARCHIVE);
   const t0 = Date.now();
@@ -199,12 +261,16 @@ async function run() {
     if (!isDir) continue;
     const code = codeOf(e.name);
     if (EDITORIAL.has(code)) {
+      const cid = slug(e.name.replace(/^[A-Z]\d?\s+/, '')) || code.toLowerCase();
+      const cpath = path.join(CONTENT, 'chapters', `${cid}.json`);
+      if (fs.existsSync(cpath)) { try { const ex = JSON.parse(fs.readFileSync(cpath, 'utf8')); if (ex.locked) { console.log('Capitolo (bloccato, non rigenerato):', e.name); index.editorial.push({ id: ex.id, code: ex.code, title: ex.title, kind: ex.kind, desc: ex.desc }); continue; } } catch {} }
       console.log('Capitolo:', e.name); const ch = await ingestChapter(abs, e.name, code, warnings);
-      fs.writeFileSync(path.join(CONTENT, 'chapters', `${ch.id}.json`), JSON.stringify(ch));
+      fs.writeFileSync(cpath, JSON.stringify(ch));
       index.editorial.push({ id: ch.id, code: ch.code, title: ch.title, kind: ch.kind, desc: ch.desc });
     } else if (code) {
       const kind = code === 'R' ? 'category' : 'line';
-      console.log('Linea:', e.name); const L = await ingestLine(abs, e.name, code, kind, warnings);
+      console.log('Linea:', e.name); let L = await ingestLine(abs, e.name, code, kind, warnings);
+      L = applyOverrides(L, warnings);
       fs.writeFileSync(path.join(CONTENT, 'lines', `${code.toLowerCase()}.json`), JSON.stringify(L));
       const rootBull = L.bulls.find((b) => b.id === L.root);
       index.lines.push({ code: L.code, name: L.name, founder: L.founder, kind: L.kind, count: L.bulls.length, founderImg: rootBull ? rootBull.img : (L.bulls.find((b) => b.img)?.img || null) });

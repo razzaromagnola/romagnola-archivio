@@ -1,0 +1,329 @@
+{
+  "_nota": "Correzioni manuali applicate sopra l'albero automatico. Matteo Ridolfi, ott 2026. Operazioni: label, root, setParent [{bull,parent}] (parent '@root' = capostipite), remove [nomi], removeIfLeaf [nomi] (toglie il doppione senza figli).",
+  "lines": {
+    "C": {
+      "label": "Medoro 1/RA",
+      "root": "MEDORO 1 RA adulto"
+    },
+    "E": {
+      "setParent": [
+        {
+          "bull": "Baruzzo",
+          "parent": "Nobile 101 RA"
+        },
+        {
+          "bull": "Ghibellino",
+          "parent": "Nobile 101 RA"
+        },
+        {
+          "bull": "Robinum",
+          "parent": "Nobile 101 RA"
+        },
+        {
+          "bull": "Bonifacio",
+          "parent": "Nobile 101 RA"
+        },
+        {
+          "bull": "Muster",
+          "parent": "Nobile 101 RA"
+        },
+        {
+          "bull": "Glauco III",
+          "parent": "Nobile 101 RA"
+        },
+        {
+          "bull": "Danilo",
+          "parent": "Nobile 101 RA"
+        }
+      ],
+      "removeIfLeaf": [
+        "Ursus"
+      ]
+    },
+    "F": {
+      "setParent": [
+        {
+          "bull": "Dollaro",
+          "parent": "Adriatico"
+        },
+        {
+          "bull": "Falco",
+          "parent": "Finarium"
+        },
+        {
+          "bull": "Baldo",
+          "parent": "Radioso"
+        },
+        {
+          "bull": "Ciclone",
+          "parent": "Dollaro"
+        },
+        {
+          "bull": "Maggio",
+          "parent": "Inverno"
+        },
+        {
+          "bull": "Bunker",
+          "parent": "Inverno"
+        },
+        {
+          "bull": "Capriccio",
+          "parent": "Ergum III"
+        }
+      ]
+    },
+    "G": {
+      "setParent": [
+        {
+          "bull": "Bolero",
+          "parent": "Verdun"
+        }
+      ]
+    },
+    "G1": {
+      "root": "Canaro",
+      "setParent": [
+        {
+          "bull": "Api",
+          "parent": "Fiasco"
+        },
+        {
+          "bull": "Edolo",
+          "parent": "Ulisse"
+        },
+        {
+          "bull": "GASTONE",
+          "parent": "Ulisse"
+        },
+        {
+          "bull": "Rombo",
+          "parent": "Ulisse"
+        },
+        {
+          "bull": "Odino",
+          "parent": "Ulisse"
+        }
+      ]
+    },
+    "G3": {
+      "root": "Lamone",
+      "setParent": [
+        {
+          "bull": "Otto",
+          "parent": "Lamone"
+        },
+        {
+          "bull": "Dublino",
+          "parent": "Bartolo"
+        },
+        {
+          "bull": "Oso",
+          "parent": "Barone"
+        },
+        {
+          "bull": "CHR Ivanhoe son",
+          "parent": "VU Ivanhoe"
+        },
+        {
+          "bull": "Coertzen Ivanhoe",
+          "parent": "VU Ivanhoe"
+        }
+      ]
+    },
+    "G4": {
+      "setParent": [
+        {
+          "bull": "Taccone",
+          "parent": "Eletto"
+        }
+      ]
+    },
+    "H1": {
+      "setParent": [
+        {
+          "bull": "Darconte",
+          "parent": "Fiero"
+        },
+        {
+          "bull": "Fiume",
+          "parent": "Europeo"
+        }
+      ]
+    },
+    "H5": {
+      "setParent": [
+        {
+          "bull": "Umberto",
+          "parent": "Pandoro"
+        }
+      ]
+    },
+    "J": {
+      "root": "Eolo",
+      "setParent": [
+        {
+          "bull": "Tiberio",
+          "parent": "Eolo"
+        },
+        {
+          "bull": "Perseo",
+          "parent": "Tiberio"
+        }
+      ]
+    },
+    "K": {
+      "setParent": [
+        {
+          "bull": "Colosso",
+          "parent": "Mauro"
+        },
+        {
+          "bull": "SCR Modoc",
+          "parent": "Lakeside Fidelio"
+        },
+        {
+          "bull": "Lakeside Fidelio",
+          "parent": "Avoncroft Marcus"
+        }
+      ]
+    },
+    "K2": {
+      "setParent": [
+        {
+          "bull": "Anteo",
+          "parent": "Vano"
+        },
+        {
+          "bull": "Ilario",
+          "parent": "Anteo"
+        },
+        {
+          "bull": "Nemo",
+          "parent": "Anteo"
+        },
+        {
+          "bull": "Piro",
+          "parent": "Baleno"
+        },
+        {
+          "bull": "Preludio",
+          "parent": "Baleno"
+        },
+        {
+          "bull": "Italia Pietro",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Italia Pronto",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Italia Sebastian",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Noemel Wesley",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Remus Winchester",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Zorro",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Wyoming Beaumont",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Quinbrook Zeb",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Wyoming Conrad",
+          "parent": "Italia Padrone"
+        },
+        {
+          "bull": "Ville Unite Navaho",
+          "parent": "Abero"
+        },
+        {
+          "bull": "Petrarca",
+          "parent": "Ville Unite Navaho"
+        },
+        {
+          "bull": "Serpico",
+          "parent": "Ville Unite Navaho"
+        },
+        {
+          "bull": "Sethi",
+          "parent": "Ville Unite Navaho"
+        },
+        {
+          "bull": "Carramar Napoleon",
+          "parent": "Italia Padrone"
+        }
+      ]
+    },
+    "I": {
+      "setParent": [
+        {
+          "bull": "Capitano II",
+          "parent": "Capitano UL8"
+        },
+        {
+          "bull": "Diano",
+          "parent": "Capitano UL8"
+        },
+        {
+          "bull": "Drago",
+          "parent": "Capitano UL8"
+        },
+        {
+          "bull": "Veltro",
+          "parent": "Capitano UL8"
+        },
+        {
+          "bull": "Ebro",
+          "parent": "Capitano UL8"
+        },
+        {
+          "bull": "Davide",
+          "parent": "Capitano UL8"
+        },
+        {
+          "bull": "Tevere",
+          "parent": "Pascia'"
+        },
+        {
+          "bull": "Maltese",
+          "parent": "Valerio"
+        },
+        {
+          "bull": "Mandorlo",
+          "parent": "Valerio"
+        },
+        {
+          "bull": "Monfalcone",
+          "parent": "Valerio"
+        }
+      ]
+    },
+    "N": {
+      "root": "Masino",
+      "setParent": [
+        {
+          "bull": "Brivido",
+          "parent": "Caronte"
+        }
+      ]
+    },
+    "R": {
+      "remove": [
+        "Ongeama Galileo"
+      ]
+    }
+  }
+}
