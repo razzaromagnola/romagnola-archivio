@@ -123,7 +123,7 @@ async function ingestLine(abs, folder, code, kind, warnings) {
   }
   // dedup per nome
   const seen = new Set(); const uniq = [];
-  for (const r of recs.sort((a, b) => keyns(a.name).localeCompare(keyns(b.name)) || ((a.sire ? 0 : 1) - (b.sire ? 0 : 1)))) { const k = keyns(r.name); if (!k || seen.has(k)) continue; seen.add(k); uniq.push(r); }
+  for (const r of recs.sort((a, b) => keyns(a.name).localeCompare(keyns(b.name)) || ((a.sire ? 0 : 1) - (b.sire ? 0 : 1)))) { const nk = keyns(r.name); if (!nk) continue; const k = (nk==='CESARE'||nk==='EBRO') ? nk + '|' + firstName(r.sire) : nk; if (seen.has(k)) continue; seen.add(k); uniq.push(r); }
   // id globali + indici per nome
   const ids = new Set(); const firstIdx = {}; const twoIdx = {};
   for (const r of uniq) { let b = `${code.toLowerCase()}-${slug(r.name) || 'x'}`, s = b, i = 2; while (ids.has(s)) s = `${b}-${i++}`; r.id = s; ids.add(s);
@@ -263,6 +263,9 @@ async function run() {
   const warnings = [];
   const index = { lines: [], lines_all: LINES_ALL, editorial: [], hero: '/img/hero.jpg' };
   const search = [];
+  // segnaposto "immagine non disponibile" (file nella radice dell'archivio)
+  const PLACEHOLDER = '/img/immagine-non-disponibile.webp';
+  try { const ph = fs.readdirSync(ARCHIVE).find((f) => /immagine non disponibile/i.test(f) && isImg(f)); if (ph) await optimize(path.join(ARCHIVE, ph), 'immagine-non-disponibile.webp', {}, warnings); } catch {}
 
   for (const e of fs.readdirSync(ARCHIVE, { withFileTypes: true })) {
     if (e.name === '__MACOSX') continue;
@@ -281,6 +284,7 @@ async function run() {
       const kind = code === 'R' ? 'category' : 'line';
       console.log('Linea:', e.name); let L = await ingestLine(abs, e.name, code, kind, warnings);
       L = applyOverrides(L, warnings);
+      for (const b of L.bulls) if (!b.img) b.img = PLACEHOLDER;
       fs.writeFileSync(path.join(CONTENT, 'lines', `${code.toLowerCase()}.json`), JSON.stringify(L));
       const rootBull = L.bulls.find((b) => b.id === L.root);
       index.lines.push({ code: L.code, name: L.name, founder: L.founder, kind: L.kind, count: L.bulls.length, founderImg: rootBull ? rootBull.img : (L.bulls.find((b) => b.img)?.img || null) });

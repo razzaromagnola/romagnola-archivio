@@ -3,13 +3,7 @@
   "lines": {
     "C": {
       "label": "Medoro 1/RA",
-      "root": "MEDORO 1 RA adulto",
-      "setParent": [
-        {
-          "bull": "Cesare",
-          "parent": "Felicino"
-        }
-      ]
+      "root": "MEDORO 1 RA adulto"
     },
     "E": {
       "setParent": [
@@ -94,7 +88,7 @@
         },
         {
           "bull": "GASTONE",
-          "parent": "Ulisse"
+          "parent": "Damone"
         },
         {
           "bull": "Rombo",
@@ -186,6 +180,62 @@
         {
           "bull": "Umberto",
           "parent": "Pandoro"
+        },
+        {
+          "bull": "Cheope",
+          "parent": "Titano"
+        },
+        {
+          "bull": "Mao",
+          "parent": "Cheope"
+        },
+        {
+          "bull": "Ilario",
+          "parent": "Cheope"
+        },
+        {
+          "bull": "Pandoro",
+          "parent": "Marte"
+        },
+        {
+          "bull": "Pastrano",
+          "parent": "Marte"
+        },
+        {
+          "bull": "Quadro",
+          "parent": "Marte"
+        },
+        {
+          "bull": "Flores",
+          "parent": "Macario"
+        },
+        {
+          "bull": "Verdiano",
+          "parent": "Macario"
+        },
+        {
+          "bull": "Imbattibile",
+          "parent": "Macario"
+        },
+        {
+          "bull": "Ubero",
+          "parent": "Macario"
+        },
+        {
+          "bull": "LF Tango",
+          "parent": "Verdiano"
+        },
+        {
+          "bull": "Regno d Radice",
+          "parent": "Verdiano"
+        },
+        {
+          "bull": "VU Neff",
+          "parent": "Verdiano"
+        },
+        {
+          "bull": "VU Totem",
+          "parent": "Verdiano"
         }
       ]
     },
@@ -559,32 +609,32 @@
           "parent": "MMB BINARIO"
         },
         {
-          "bull": "DUNURE DIVIDENT",
+          "bull": "DUNURE DIVIDEND",
           "parent": "SCOTTISH CAESAR"
         },
         {
           "bull": "STIRLING JULIAN",
-          "parent": "DUNURE DIVIDENT"
+          "parent": "DUNURE DIVIDEND"
         },
         {
           "bull": "STIRLING JIMONDI",
-          "parent": "DUNURE DIVIDENT"
+          "parent": "DUNURE DIVIDEND"
         },
         {
           "bull": "STIRLING CONDOR",
-          "parent": "DUNURE DIVIDENT"
+          "parent": "DUNURE DIVIDEND"
         },
         {
           "bull": "STIRLING HAMPO",
-          "parent": "DUNURE DIVIDENT"
+          "parent": "DUNURE DIVIDEND"
         },
         {
           "bull": "DUNURE NOTHERN DANCER",
-          "parent": "DUNURE DIVIDENT"
+          "parent": "DUNURE DIVIDEND"
         },
         {
           "bull": "DUNURE ROBERTO",
-          "parent": "DUNURE DIVIDENT"
+          "parent": "DUNURE DIVIDEND"
         },
         {
           "bull": "H.MAGNIFICENT",
