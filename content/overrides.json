@@ -9,31 +9,31 @@
       "setParent": [
         {
           "bull": "Baruzzo",
-          "parent": "Nobile 101 RA"
+          "parent": "Nobile101-RA"
         },
         {
           "bull": "Ghibellino",
-          "parent": "Nobile 101 RA"
+          "parent": "Nobile101-RA"
         },
         {
           "bull": "Robinum",
-          "parent": "Nobile 101 RA"
+          "parent": "Nobile101-RA"
         },
         {
           "bull": "Bonifacio",
-          "parent": "Nobile 101 RA"
+          "parent": "Nobile101-RA"
         },
         {
           "bull": "Muster",
-          "parent": "Nobile 101 RA"
+          "parent": "Nobile101-RA"
         },
         {
           "bull": "Glauco III",
-          "parent": "Nobile 101 RA"
+          "parent": "Nobile101-RA"
         },
         {
           "bull": "Danilo",
-          "parent": "Nobile 101 RA"
+          "parent": "Nobile101-RA"
         }
       ],
       "removeIfLeaf": [
@@ -97,6 +97,22 @@
         {
           "bull": "Odino",
           "parent": "Ulisse"
+        },
+        {
+          "bull": "Urano",
+          "parent": "Api"
+        },
+        {
+          "bull": "Leo",
+          "parent": "Api"
+        },
+        {
+          "bull": "Api son D. V. Rensburg RSA",
+          "parent": "Api"
+        },
+        {
+          "bull": "Fardini Indovinello",
+          "parent": "Api"
         }
       ]
     },
@@ -154,6 +170,30 @@
         {
           "bull": "Doro",
           "parent": "VU Eolo"
+        },
+        {
+          "bull": "Ande",
+          "parent": "Otto"
+        },
+        {
+          "bull": "Bandolero",
+          "parent": "Otto"
+        },
+        {
+          "bull": "Barone",
+          "parent": "Otto"
+        },
+        {
+          "bull": "Bartolo",
+          "parent": "Otto"
+        },
+        {
+          "bull": "Nuccio",
+          "parent": "Otto"
+        },
+        {
+          "bull": "Ande son Dail Van Rensburg RSA",
+          "parent": "Ande"
         }
       ],
       "remove": [
@@ -237,6 +277,19 @@
           "bull": "VU Totem",
           "parent": "Verdiano"
         }
+      ],
+      "rename": [
+        {
+          "bull": "Imbattibile",
+          "to": "Imbattibile 0"
+        },
+        {
+          "bull": "VU Imbattibile",
+          "to": "Imbattibile"
+        }
+      ],
+      "remove": [
+        "Imbattibile 0"
       ]
     },
     "J": {
@@ -248,7 +301,23 @@
         },
         {
           "bull": "Perseo",
-          "parent": "Tiberio"
+          "parent": "Toto' Tibe1"
+        },
+        {
+          "bull": "Quadrato",
+          "parent": "Perseo"
+        },
+        {
+          "bull": "Mincio",
+          "parent": "Perseo"
+        },
+        {
+          "bull": "Persico",
+          "parent": "Perseo"
+        },
+        {
+          "bull": "Colosseo",
+          "parent": "Perseo"
         }
       ]
     },

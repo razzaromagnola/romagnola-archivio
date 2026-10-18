@@ -214,6 +214,7 @@ function applyOverrides(L, warnings) {
     return id;
   };
   if (ov.label) L.name = ov.label;
+  for (const { bull, to } of (ov.rename || [])) { const b = resolveBull(bull, L.bulls, warnings, L.code); if (b) b.name = to; }
   if (ov.root) {
     const r = resolveBull(ov.root, L.bulls, warnings, L.code);
     if (r) {
