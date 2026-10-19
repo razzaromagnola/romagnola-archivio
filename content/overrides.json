@@ -3,7 +3,16 @@
   "lines": {
     "C": {
       "label": "Medoro 1/RA",
-      "root": "MEDORO 1 RA adulto"
+      "root": "MEDORO 1 RA adulto",
+      "remove": [
+        "MEDORO"
+      ],
+      "setParent": [
+        {
+          "bull": "Medoro VII",
+          "parent": "@root"
+        }
+      ]
     },
     "E": {
       "setParent": [
@@ -272,7 +281,7 @@
         },
         {
           "bull": "Imbattibile",
-          "parent": "Macario"
+          "parent": "Verdiano"
         },
         {
           "bull": "Ubero",
@@ -280,19 +289,19 @@
         },
         {
           "bull": "LF Tango",
-          "parent": "Verdiano"
+          "parent": "Imbattibile"
         },
         {
           "bull": "Regno d Radice",
-          "parent": "Verdiano"
+          "parent": "Imbattibile"
         },
         {
           "bull": "VU Neff",
-          "parent": "Verdiano"
+          "parent": "Imbattibile"
         },
         {
           "bull": "VU Totem",
-          "parent": "Verdiano"
+          "parent": "Imbattibile"
         }
       ],
       "rename": [
@@ -516,6 +525,14 @@
         {
           "bull": "Brivido",
           "parent": "Caronte"
+        },
+        {
+          "bull": "Erone",
+          "parent": "Brivido"
+        },
+        {
+          "bull": "Felice",
+          "parent": "Brivido"
         }
       ]
     },
@@ -569,6 +586,18 @@
         {
           "bull": "Shannonbourne Impeccable",
           "parent": "Shannon Bourne Brockwell"
+        },
+        {
+          "bull": "Shannon Bourne Brockwell",
+          "parent": "Rashwood Gerald"
+        },
+        {
+          "bull": "Knockdolian Maestro",
+          "parent": "Rashwood Gerald"
+        },
+        {
+          "bull": "Wyoming AngeIo linea R. Gerald Ausl",
+          "parent": "Rashwood Gerald"
         }
       ]
     },
@@ -911,6 +940,29 @@
           "parent": "TARCISIO"
         }
       ]
+    },
+    "H3": {
+      "setParent": [
+        {
+          "bull": "Orlone 930A",
+          "parent": "Assalto"
+        },
+        {
+          "bull": "Dittatore",
+          "parent": "Orlone 930A"
+        },
+        {
+          "bull": "Barone",
+          "parent": "Orlone 930A"
+        },
+        {
+          "bull": "Eridano",
+          "parent": "Orlone 930A"
+        }
+      ]
+    },
+    "M": {
+      "rootAbove": "Senio"
     }
   }
 }
