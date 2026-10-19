@@ -212,8 +212,25 @@
         {
           "bull": "Fiume",
           "parent": "Europeo"
+        },
+        {
+          "bull": "Bellico",
+          "parent": "Virile"
+        },
+        {
+          "bull": "Muster",
+          "parent": "Virile"
+        },
+        {
+          "bull": "Astro",
+          "parent": "Virile"
+        },
+        {
+          "bull": "Virile",
+          "parent": "@root"
         }
-      ]
+      ],
+      "rootAbove": "Franco"
     },
     "H5": {
       "setParent": [
