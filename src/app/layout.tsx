@@ -1,7 +1,30 @@
 import type { Metadata } from 'next';
+import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import { LangProvider } from '@/components/LangProvider';
 import TopBar from '@/components/TopBar';
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  display: 'swap',
+  variable: '--font-serif',
+});
+
+const plexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+  variable: '--font-sans',
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   title: 'Archivio Romagnola — Storia e linee genealogiche',
@@ -10,12 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="it" className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}>
       <body>
         <LangProvider>
           <TopBar />
